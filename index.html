@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель Sort & View</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0c12;
+            font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        /* Только панель, без контента */
+        .panel {
+            background: #0f1117;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Блок Sort & View */
+        .sort-view {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #1a1d27;
+            padding: 0.4rem 1.2rem 0.4rem 1.2rem;
+            border-radius: 40px;
+        }
+
+        .sort-icon {
+            font-size: 1rem;
+            color: #a0a5b5;
+        }
+
+        .sort-text {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #cbd0e0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .sort-arrow {
+            color: #8e94a8;
+            font-size: 0.7rem;
+            margin-left: 0.2rem;
+        }
+
+        /* Группа вкладок */
+        .tabs-group {
+            display: flex;
+            gap: 0.25rem;
+            background: #0b0d12;
+            padding: 0.2rem;
+            border-radius: 48px;
+        }
+
+        .tab {
+            background: transparent;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #8e94a8;
+            font-family: inherit;
+        }
+
+        .tab.active {
+            background: #2c2f3c;
+            color: white;
+        }
+
+        .tab:hover:not(.active) {
+            background: #1e212b;
+            color: #e0e4f0;
+        }
+
+        /* Маленькая стрелка у ALL */
+        .tab-with-arrow {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.65rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 550px) {
+            .panel {
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+            }
+            .tabs-group {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <!-- Sort & View с выпадающей стрелкой -->
+        <div class="sort-view">
+            <span class="sort-icon">☰</span>
+            <span class="sort-text">Sort & View</span>
+            <span class="sort-arrow">▼</span>
+        </div>
+
+        <!-- Вкладки: LEGACY, ENHANCED, OTHER MODS, All (как на скриншоте) -->
+        <div class="tabs-group">
+            <button class="tab active">LEGACY</button>
+            <button class="tab">ENHANCED</button>
+            <button class="tab">OTHER MODS</button>
+            <button class="tab">
+                <span class="tab-with-arrow">
+                    All <span class="dropdown-arrow">▼</span>
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Просто переключение активной вкладки (для визуального эффекта, без контента)
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
